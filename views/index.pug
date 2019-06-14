@@ -1,0 +1,707 @@
+doctype html
+html(lang='en')
+  head
+    title orderlist
+    //- link(rel='stylesheet', href='https://maxcdn.bootstrapcdn.com/bootstrap/3.4.0/css/bootstrap.min.css')
+    script(src='https://ajax.googleapis.com/ajax/libs/jquery/3.4.0/jquery.min.js')
+    script(src='https://maxcdn.bootstrapcdn.com/bootstrap/3.4.0/js/bootstrap.min.js')
+    link(rel='stylesheet', type='text/css', href='https://cdn.datatables.net/1.10.19/css/jquery.dataTables.min.css')
+    link(rel='stylesheet', type='text/css', href='https://cdn.datatables.net/buttons/1.5.6/css/buttons.dataTables.min.css')
+    link(rel='stylesheet', href='stylesheets/style.css')
+    meta(charset='utf-8')
+    meta(name='viewport', content='width=device-width, initial-scale=1.0')
+    meta(name='description', content='')
+    meta(name='author', content='Dashboard')
+    meta(name='keyword', content='Dashboard, Bootstrap, Admin, Template, Theme, Responsive, Fluid, Retina')
+    title Title
+    link(type='image/png', href='images/adityalogo.png', rel='icon')
+    // Bootstrap core CSS
+    link(rel='stylesheet', href='stylesheets/bootstrap.min.css')
+    script(src='javascripts/jquery-1.11.1.min.js')
+    script(src='javascripts/bootstrap.min.js')
+    // external css
+    link(rel='stylesheet', href='https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css')
+    // Custom styles for this template
+    link(href='stylesheets/style.css', rel='stylesheet')
+    link(href='stylesheets/style-responsive.css', rel='stylesheet')
+    //jspdf
+    script(src='https://cdnjs.cloudflare.com/ajax/libs/jspdf/1.5.3/jspdf.debug.js')
+    script(src='https://cdnjs.cloudflare.com/ajax/libs/jspdf/1.5.3/jspdf.min.js')
+    script(src='javascripts/pdf.js')
+    // Data tables CSS
+    link(rel='stylesheet', type='text/css', href='stylesheets/buttons.dataTables.min.css')
+    link(rel='stylesheet', type='text/css', href='stylesheets/jquery.dataTables.min.css')
+    link(href='stylesheets/dataTables.bootstrap.css', rel='stylesheet')
+    script(src='javascripts/date.js')
+    script(src='javascripts/price.js')
+    style.
+      .header, #sidebar {
+      background: #2C3E50;
+      }
+      span {
+      font-size: 14px;
+      }
+      .file-uploader {
+      background-color: #dbefe9;
+      border-radius: 3px;
+      color: #242424;
+      }
+      .file-uploader__message-area {
+      font-size: 18px;
+      padding: 1em;
+      text-align: center;
+      color: #377a65;
+      }
+      .file-list {
+      background-color: white;
+      font-size: 16px;
+      }
+      .file-list__name {
+      white-space: nowrap;
+      overflow: hidden;
+      text-overflow: ellipsis;
+      }
+      .file-list li {
+      height: 50px;
+      line-height: 50px;
+      margin-left: .5em;
+      border: none;
+      overflow: hidden;
+      }
+      .removal-button {
+      width: 20%;
+      border: none;
+      background-color: #d65d38;
+      color: white;
+      }
+      .removal-button::before {
+      content: "X";
+      }
+      .removal-button:focus {
+      outline: 0;
+      }
+      .file-chooser {
+      padding: 1em;
+      transition: background-color 1s, height 1s;
+      }
+      .file-chooser p {
+      font-size: 18px;
+      padding-top: 1em;
+      }
+      .file-uploader {
+      max-width: 400px;
+      height: auto;
+      margin: 2em auto;
+      }
+      .file-uploader * {
+      display: block;
+      }
+      .file-uploader input[type=submit] {
+      margin-top: 2em;
+      float: right;
+      }
+      .file-list {
+      margin: 0 auto;
+      max-width: 90%;
+      }
+      .file-list__name {
+      max-width: 70%;
+      float: left;
+      }
+      .removal-button {
+      display: inline-block;
+      height: 100%;
+      float: right;
+      }
+      .file-chooser {
+      width: 90%;
+      margin: .5em auto;
+      }
+      .file-chooser__input {
+      margin: 0 auto;
+      }
+      .file-uploader__submit-button {
+      width: 100%;
+      border: none;
+      font-size: 1.5em;
+      padding: 1em;
+      background-color: #72bfa7;
+      color: white;
+      }
+      .file-uploader__submit-button:hover {
+      background-color: #a7d7c8;
+      }
+      .file-list li:after, .file-uploader:after {
+      content: "";
+      display: table;
+      clear: both;
+      }
+      .hidden {
+      display: none;
+      }
+      .hidden input {
+      display: none;
+      }
+      .error {
+      background-color: #d65d38;
+      color: white;
+      }
+      *, *::before, *::after {
+      box-sizing: border-box;
+      }
+      ul, li {
+      margin: 0;
+      padding: 0;
+      }
+      .personal_details {
+      background-color: white;
+      border-left:4px solid #fd9f1b;
+      }
+      .personal_details h3 {
+      padding: 10px;
+      }
+      #name {
+      color: #B4886B;
+      font-weight: bold;
+      float: left;
+      margin-left:20px;
+      font-size:15px;
+      }
+      #wd
+      {
+      margin-left: 10px;
+      font-weight: bold;
+      font-family: Arial;
+      }
+      .panel-box {
+      display: table;
+      table-layout: fixed;
+      width: 100%;
+      height: 30px;
+      text-align: center;
+      border: medium none;
+      }
+      .bg-success {
+      background-color: #A3C86D !important;
+      color: #FFF !important;
+      }
+      .bg-warning {
+      background-color: orange !important;
+      color: #FFF !important;
+      }
+      .bg-light {
+      background-color: lightblue !important;
+      color: #FFF !important;
+      }
+      .bg-lightgreen {
+      background-color: lightgreen !important;
+      color: #FFF !important;
+      }
+      .bg-default {
+      background-color: grey !important;
+      color: #FFF !important;
+      }
+      .bg-pink {
+      background-color: pink !important;
+      color: #FFF !important;
+      }
+      .bg-tomato {
+      background-color: tomato !important;
+      color: #FFF !important;
+      }
+      .bg-dodgerblue {
+      background-color: dodgerblue !important;
+      color: #FFF !important;
+      }
+      .bg-violet {
+      background-color: violet !important;
+      color: #FFF !important;
+      }
+      .success-text {
+      color: #82b33a;
+      }
+      .bg-danger {
+      background-color: #FF7857 !important;
+      color: #FFF !important;
+      }
+      .danger-text {
+      color: #d15b3d;
+      }
+      .panel-box .panel-icon {
+      display: table-cell;
+      padding: px;
+      width: 1%;
+      vertical-align: top;
+      border-radius: 0px;
+      text-align: center;
+      /*border-bottom: 1px solid #fcfcfc;
+      border-top: 1px solid #fcfcfc;
+      border-right: 1px solid #fcfcfc;*/
+      }
+      .panel-box .size-h1 {
+      margin-top:7px;
+      }
+      .panel-box .fa {
+      margin-top:9px;
+      }
+      .bg-lovender {
+      background-color: #8075C4 !important;
+      color: #FFF !important;
+      }
+      .lovender-text {
+      color: #6a5fb1;
+      }
+      .capitalize {
+      text-transform: capitalize;
+      }
+      .uppercase {
+      text-transform: uppercase;
+      }
+      .i1{
+      display: none;
+      }
+    
+    style.
+      .data{
+      font-weight: bold;
+      }
+  body
+    section#container
+      // header start
+      header.header.black-bg
+        .sidebar-toggle-box
+          .fa.fa-bars.tooltips(data-placement='right', data-original-title='Toggle Navigation')
+        // logo start
+        a.logo(href='#')
+          b
+            img(src='images/myhub_logo.png', style='height:55px;width:100px;margin-top:-13px;')
+        // logo end
+        .top-menu
+          ul.nav.pull-right.top-menu
+            li
+              a.logout(href='logout') Logout
+      // header end
+      // sidebar start
+      aside
+        #sidebar.nav-collapse
+          // sidebar menu start
+          ul#nav-accordion.sidebar-menu
+            p.centered
+              a(href='#')
+                img.img-circle(src='images/user.png', width='80')
+            h5.centered
+              p CushyCanteen
+            li.active
+              a(data-toggle='tab', href='#tab1')
+                i.fa(style='font-size:24px;') 
+                span New order
+            li.sub-menu
+              a(data-toggle='tab', href='#tab2')
+                i.fa(style='font-size:24px;') 
+                span Order List
+            li.sub-menu
+              a(data-toggle='tab', href='#tab3')
+                i.fa(style='font-size:24px;') 
+                span Month Report
+            li.sub-menu
+              a(data-toggle='tab', href='#tab4')
+                i.fa(style='font-size:24px;') 
+                span Price menu
+    // sidebar menu end
+    // sidebar end
+    // main content start
+    section#main-content
+      section.wrapper.site-min-height
+        .row.mt
+          .tab-content
+            #tab1.tab-pane.fade.in.active
+              center
+                .container(style='margin-left:250px;')
+                  .row
+                    .col-md-6
+                      h1 Guest Details
+                      form(action='/guest', method='post', style='margin-top:50px')
+                        .form-group.col-md-12
+                          label.control-group.col-md-4 Date of visiting:
+                          .input-group.col-md-4
+                            input.form-control(type='date', name='date')
+                        .form-group.col-md-12
+                          label.control-group.col-md-4 Guest/Team Name:
+                          .input-group.col-md-4
+                            textarea.form-control(name='gname')
+                        .form-group.col-md-12
+                          label.control-group.col-md-4 Description/Reason For Visiting:
+                          .input-group.col-md-4
+                            textarea.form-control(name='des')
+                        .form-group.col-md-12
+                          label.control-group.col-md-4 CheckOut:
+                          .input-group.col-md-4
+                            input.form-control(type='date', name='checkout')
+                        input.btn.btn-success(type='submit')
+                center
+                  .container(style='background-color: #eaeaea;width: 100%;height:100%;border-radius: 1px;')
+                    .row
+                      .col-md-12
+                        // code here
+            #tab2.tab-pane.fade.align
+              center
+                .container
+                  .row
+                    .col-md-12
+                      .table-responsive
+                        table.example.table.table-bordered.table-striped.table-hover
+                          thead
+                            tr
+                              th Sno.
+                              th Description
+                              th Date
+                              th Team Size
+                              th Breakfast
+                              th VegLunch
+                              th Non-veglunch
+                              th Snacks
+                              th Tea
+                              th Coffee
+                              th VegDinner
+                              th Non-vegDinner
+                              th Amount
+                              th Actions
+                          tbody
+                            each member,index in data
+                              tr
+                                td #{index+1}
+                                td #{member.description}
+                                td #{member.date}
+                                td #{member.Teamsize}
+                                td 
+                                  .panel.panel-info
+                                    .panel-heading #{member.breakfasttype}
+                                    .panel-body #{member.breakfast}
+                                td #{member.veglunch}
+                                td 
+                                  .panel.panel-info
+                                    .panel-heading #{member.nonveglunchtype}
+                                    .panel-body #{member.nonveglunch}
+                                td #{member.snacks}
+                                td #{member.tea}
+                                td #{member.coffee}
+                                td #{member.vegdinner}
+                                td 
+                                  .panel.panel-info
+                                    .panel-heading #{member.nonvegdinnertype}
+                                    .panel-body #{member.nonvegdinner}
+                                td #{member.amount}
+                                td
+                                  button(value=member._id).btn.btn-info.btn-lg(type='button', data-toggle='modal', data-target='#myModal').edit Edit
+                                  button(value=member._id).btn.btn-success.download Download
+                                  button(value=member._id).btn.btn-danger.remove Remove
+                    #myModal.modal.fade(role='dialog')
+                      .modal-dialog
+                        // Modal content
+                        .modal-content
+                          .modal-header
+                            button.close(type='button', data-dismiss='modal') ×
+                            h4.modal-title Order-List
+                          .modal-body
+                            form.form(action='/update',method='post')
+                              input(type='text',name='id')#id.hide
+                              .form-group
+                                label.control-group.col-md-5 Team size:
+                                .input-group.col-md-7
+                                  span.input-group-addon
+                                    i.fa.fa-cutlery
+                                  input.form-control(type='number',id='teamsize', name='teamsize', placeholder='Teamsize')
+                              .form-group
+                                label.control-group.col-md-5 Breakfast:
+                                .input-group.col-md-7
+                                  span.input-group-addon
+                                    i.fa.fa-cutlery
+                                  input.form-control.breakf(type='number',id='breakfast', name='breakfast', placeholder='Breakfast Quantity')
+                              .form-group
+                                label.control-group.col-md-5 Breakfast Type:
+                                .input-group.col-md-7
+                                  span.input-group-addon
+                                    i.fa.fa-cutlery
+                                  select.form-control(name='breakfasttype',id='breakfasttype')
+                                    option(value='poori') poori
+                                    option(value='dosa') dosa
+                                    option(value='idly') idly      
+                              .form-group
+                                label.control-group.col-md-5 Veg Lunch Quantity:
+                                .input-group.col-md-7
+                                  span.input-group-addon
+                                    i.fa.fa-cutlery
+                                  input.form-control(type='number', name='veglunch', id='veglunch',placeholder='Veg Lunch Quantity')
+                              .form-group
+                                label.control-group.col-md-5 Non-veg Lunch Quantity:
+                                .input-group.col-md-7
+                                  span.input-group-addon
+                                    i.fa.fa-cutlery
+                                  input.form-control(type='number', name='nonveglunch', id='nonveglunch',placeholder='Non-veglunch')
+                              .form-group
+                                label.control-group.col-md-5 Non-veg Lunch Type:
+                                .input-group.col-md-7
+                                  span.input-group-addon
+                                    i.fa.fa-cutlery
+                                  select.form-control(name='nonveglunchtype',id='nonveglunchtype')
+                                    option select
+                                    option(value='chicken dum biryani') chicken dum biryani
+                                    option(value='chicken fry piece biryani') chicken fry piece biryani
+                                    option(value='mutton biryani') mutton biryani
+                                    option(value='mixed biryani') mixed biryani
+                              .form-group
+                                label.control-group.col-md-5 Snacks:
+                                .input-group.col-md-7
+                                  span.input-group-addon
+                                    i.fa.fa-cutlery
+                                  input.form-control(type='number', name='snacks',id='snacks', placeholder='Snacks Quantity')
+                              .form-group
+                                label.control-group.col-md-5 Tea:
+                                .input-group.col-md-7
+                                  span.input-group-addon
+                                    i.fa.fa-cutlery
+                                  input.form-control(type='number', name='tea',id='tea', placeholder='Tea Quantity')
+                              .form-group
+                                label.control-group.col-md-5 Coffee:
+                                .input-group.col-md-7
+                                  span.input-group-addon
+                                    i.fa.fa-cutlery
+                                  input.form-control(type='number', name='coffee',id='coffee', placeholder='Coffee Quantity')
+                              .form-group
+                                label.control-group.col-md-5 Veg Dinner:
+                                .input-group.col-md-7
+                                  span.input-group-addon
+                                    i.fa.fa-cutlery
+                                  input.form-control(type='number', name='vegdinner', id='vegdinner' placeholder='Veg Dinner Quantity')
+                              .form-group
+                                label.control-group.col-md-5 Non-veg Dinner Quantity:
+                                .input-group.col-md-7
+                                  span.input-group-addon
+                                    i.fa.fa-cutlery
+                                  input.form-control(type='number', name='nonvegdinner', id='nonvegdinner', placeholder='Non-veg Dinner Quantity    ')
+                              .form-group
+                                label.control-group.col-md-5 Non-veg Dinner Type:
+                                .input-group.co-l-md7
+                                  span.input-group-addon
+                                    i.fa.fa-cutlery
+                                  select.form-control(name='nonvegdinnertype',id='nonvegdinnertype')
+                                    option select
+                                    option(value='chicken dum biryani') chicken dum biryani
+                                    option(value='chicken fry piece biryani') chicken fry piece biryani
+                                    option(value='mutton biryani') mutton biryani
+                                    option(value='mixed biryani') mixed biryani
+                              .form-group
+                                label.control-group.col-md-5 Àmount
+                                .input-group.col-md-7
+                                  span.input-group-addon
+                                    i.fa.fa-cutlery
+                                  input.form-control.amount(type='text', name='amount', id='amount')
+                              br
+                              br
+                              input.sub(type='submit', style='margin-left:50px;')
+                          .modal-footer
+                            button.btn.btn-default(type='button', data-dismiss='modal') Close
+            #tab3.tab-pane.fade.align
+              center
+                .container(style='margin-top:;')
+                  .row
+                    br
+                    form.form-horizontal.col-sm-7.col-sm-offset-2(action='', method='post')
+                      br
+                      br
+                      br
+                      .form-group.registration-date
+                        label.control-label.col-sm-3(for='registration-date') Select Date:
+                        .input-group.registration-date-time
+                          span#basic-addon1.input-group-addon
+                            span from
+                          input#yesterdaydate.form-control(name='registration_date', type='date')
+                          span#basic-addon1.input-group-addon
+                            span to
+                          input#todaydate.form-control(name='registration_date', type='date')
+                      .col-md-12.text-center
+                        br
+                        button#datereport.btn.btn-success(type='button') Generate Report
+                  br
+                  br           
+                  .table-responsive
+                    table.example.table.table-striped.table-bordered.table-hover.data1(style="color: #000;")
+                      thead
+                        tr
+                          th Description
+                          th Date
+                          th Team Size
+                          th Breakfast
+                          th VegLunch
+                          th Non-veglunch
+                          th Snacks
+                          th Tea
+                          th Coffee
+                          th VegDinner
+                          th Non-vegDinner
+                          th Amount
+            #tab4.tab-pane.fade.align
+              center
+                .container
+                  .row
+                    .col-md-12
+                      h1(style='text-align:center') Price Details
+                      table.table.table-bordered.table-striped.table-hover
+                        thead
+                          tr
+                            th Sno.
+                            th item
+                            th price
+                            th category
+                            th Action
+                        tbody
+                          tr
+                            td 1
+                            td Poori
+                            td 
+                              input#poo.poori(type='text',value='20',readonly style="border: none;")
+                            td Breakfast
+                            td you cannot modify the prices
+                          tr
+                            td 2
+                            td Idly
+                            td 
+                              input#idl.idly(type='text',value='10',readonly style="border: none;")
+                            td Breakfast
+                            td you cannot modify the prices
+                          tr
+                            td 3
+                            td Dosa
+                            td 
+                              input#dosa.dosa1(type='text',value='25',readonly style="border: none;")
+                            td Breakfast
+                            td you cannot modify the prices      
+                          tr
+                            td 4
+                            td Veg Lunch/Veg Dinner
+                            td 
+                              input#vegl.veg(type='text',value='34',readonly style="border: none;")
+                            td Non-veg Lunch/Dinner
+                            td you cannot modify the prices
+                          tr
+                            td 5
+                            td Chicken Dum Biryani
+                            td 
+                              input#cdb.ncdb(type='text',value='150',readonly style="border: none;")
+                            td Non-veg Lunch/Dinner
+                            td you cannot modify the prices
+                          tr
+                            td 6
+                            td Mutton Biryani
+                            td 
+                              input#mb.nmb(type='text',value='170',readonly style="border: none;")
+                            td Non-veg Lunch/Dinner
+                            td you cannot modify the prices
+                          tr
+                            td 7
+                            td mixed biryani
+                            td 
+                              input#mib.nmib(type='text',value='180',readonly style="border: none;")
+                            td Non-veg Lunch/Dinner
+                            td you cannot modify the prices
+                          tr
+                            td 8
+                            td Chicken Fry Piece Biryani
+                            td 
+                              input#cfpb.ncfpb(type='text',value='125',readonly style="border: none;")
+                            td Non-veg Lunch/Dinner
+                            td you cannot modify the prices
+                          tr
+                            td 9
+                            td Snacks
+                            td 
+                              input#sna.s(type='text',value='15',readonly style="border: none;")
+                            td snacks
+                            td you cannot modify the prices
+                          tr
+                            td 10
+                            td Tea
+                            td 
+                              input#tea.t(type='text',value='6',readonly style="border: none;")
+                            td Tea
+                            td you cannot modify the prices
+                          tr
+                            td 11
+                            td Coffee
+                            td 
+                              input#cof.c(type='text',value='8',readonly style="border: none;")
+                            td Coffee
+                            td you cannot modify the prices
+                          //- tr
+                            //- td 12
+                            //- td Veg Dinner
+                            //- td 
+                              //- input#vegd(type='text',value='34' ,readonly style="border: none;")
+                            //- td Dinner
+                            //- td you cannot modify the prices
+                          //- tr
+                          //-   td 13
+                          //-   td Chicken Dum Biryani
+                          //-   td 
+                          //-     input#cdbd(type='text',value='150' ,readonly style="border: none;")
+                          //-   td Dinner
+                          //-   td you cannot modify the prices
+                          //- tr
+                          //-   td 14
+                          //-   td Mutton Biryani
+                          //-   td 
+                          //-     input#mbd(type='text',value='170' ,readonly style="border: none;")
+                          //-   td Dinner
+                          //-   td you cannot modify the prices
+                          //- tr
+                          //-   td 15
+                          //-   td mixed biryani
+                          //-   td 
+                          //-     input#mibd(type='text',value='180' ,readonly style="border: none;")
+                          //-   td Dinner
+                          //-   td you cannot modify the prices
+                          //- tr
+                          //-   td 16
+                          //-   td Chicken Fry Piece Biryani
+                          //-   td 
+                          //-     input#cfpbd(type='text',value='125' ,readonly style="border: none;")
+                          //-   td Dinner
+                          //-   td you cannot modify the prices
+
+                      
+
+
+              .container(style='background-color: #eaeaea;width: 100%;height:100%;border-radius: 1px;')
+                .row
+                  .col-md-12
+                    // code here
+                    // MAIN CONTENT
+                    // main content end
+                    // js placed at the end of the document so the pages load faster
+                    script(src='javascripts/jquery.js')
+                    script(src='javascripts/bootstrap.min.js')
+                    script(src='javascripts/jquery-ui-1.9.2.custom.min.js')
+                    script(src='javascripts/jquery.ui.touch-punch.min.js')
+                    script(src='javascripts/jquery.dcjqaccordion.2.7.js')
+                    script(src='javascripts/jquery.scrollTo.min.js')
+                    script(src='javascripts/jquery.nicescroll.js')
+                    // common script for all pages
+                    script(src='javascripts/common-scripts.js')
+                    script(src='javascripts/jquery.dataTables.min.js')
+                    script(src='javascripts/dataTables.buttons.min.js')
+                    script(src='javascripts/buttons.flash.min.js')
+                    script(src='javascripts/jszip.min.js')
+                    script(src='javascripts/pdfmake.min.js')
+                    script(src='javascripts/vfs_fonts.js')
+                    script(src='javascripts/buttons.html5.min.js')
+                    script(src='javascripts/buttons.print.min.js')
+                    script(src='https://code.jquery.com/jquery-3.3.1.js')
+                    script(src='https://cdn.datatables.net/1.10.19/js/jquery.dataTables.min.js')
+                    script(src='https://cdn.datatables.net/buttons/1.5.6/js/dataTables.buttons.min.js')
+                    script(src='https://cdn.datatables.net/buttons/1.5.6/js/buttons.flash.min.js')
+                    script(src='https://cdnjs.cloudflare.com/ajax/libs/jszip/3.1.3/jszip.min.js')
+                    script(src='https://cdnjs.cloudflare.com/ajax/libs/pdfmake/0.1.53/pdfmake.min.js')
+                    script(src='https://cdnjs.cloudflare.com/ajax/libs/pdfmake/0.1.53/vfs_fonts.js')
+                    script(src='https://cdn.datatables.net/buttons/1.5.6/js/buttons.html5.min.js')
+                    script(src='https://cdn.datatables.net/buttons/1.5.6/js/buttons.print.min.js')
+                    script(src='javascripts/ol.js')

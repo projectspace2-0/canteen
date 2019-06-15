@@ -6,9 +6,7 @@ $(document).ready(function(){
 	    var to=$("#todaydate").val();
 	      //(to);
 		$.post('/report', {"from":from, "to":to}, function(data){
-          alert('success');
           var jsondata1=JSON.stringify(data);
-          alert(jsondata1);
 			$.each($.parseJSON(jsondata1),function(i,v){
 			        var listtable = $('.data1').DataTable();
 			        listtable.row.add( [
